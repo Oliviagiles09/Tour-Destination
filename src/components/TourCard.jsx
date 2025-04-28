@@ -1,27 +1,17 @@
 import React, { useSate } from "react";
 
-function TourCard({ id, name, info, price, image, onRemove }) {
-    const [readMore, setReadMore] = useState(false);
+const TourCard = ({ tour, removeTour }) => {
+  return (
+    <div className="tour-card">
+      <img src={tour.image} alt={tour.name} />
+      <div className="tour-info">
+        <h3>{tour.name}</h3>
+        <p>{tour.info}</p>
+        <p className="tour-price">{tour.price}</p>
+        <button onClick={() => removeTour(tour.id)}>Not Interested</button>
+      </div>
+    </div>
+  );
+};
 
-    return (
-        <artical className="tour">
-            <img src={image} alt={name} />
-            <footer>
-                <div className="tour-info">
-                    <h4 className="tour-price">${price}</h4>
-                </div>
-                <p>
-                    {readMore ? info : '${info.substring(0, 150)}...'}
-                    <button onClick={() => setReadMore(!readMore)}>
-                        {readMore ? "Show Less" : "Read More"}
-                    </button>
-                </p>
-                <button onClick={() => onRemove(id)} className="delete-btn">
-                    Not Interested
-                </button>
-            </footer>
-        </artical>
-    );
-}
-
-export default Tourcard;
+export default TourCard;
